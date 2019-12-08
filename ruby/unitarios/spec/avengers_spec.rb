@@ -61,10 +61,10 @@ describe AvengersHeadQuarter do
         expect(hq.avengers).to end_with('Ironman')
     end
 
-#     it 'deve conter o sobrenome' do
-#         avenger. = 'Peter Parker'
+    it 'deve conter o sobrenome' do
+        avenger. = 'Peter Parker'
 
-#         expect(avenger).to match(/Paker/)
+        expect(avenger).to match(/Paker/)
 
-#     end
-# end
+    end
+end
