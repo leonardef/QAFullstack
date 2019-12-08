@@ -1,62 +1,70 @@
-# frozen_string_literal: true
 
 class AvengersHeadQuarter
-  attr_accessor :list
 
-  def initialize
-    self.list = []
-  end
+    attr_accessor :avengers
 
-  def put(avenger)
-    list.push(avenger)
-  end
+    def initialize
+        self.avengers = []
+    end
+
+    def put(avenger)
+        self.avengers.push(avenger)
+    end
 end
 
-# TDD (Test Driven Developer - Desenvolvimento Guiado a Testes)
+
+# TDD (Desenvolvimento Guiado por Testes)
 describe AvengersHeadQuarter do
-  it 'deve adicionar um vingador' do
-    hq = AvengersHeadQuarter.new
+    it 'deve adicionar um vingador' do
+        hq = AvengersHeadQuarter.new
 
-    hq.put('Spiderman')
+        hq.put('Spiderman')
+        expect(hq.avengers).to include 'Spiderman'
+    end
 
-    expect(hq.list).to include 'Spiderman'
-  end
+    it 'deve adicionar uma lista de avengers' do
+        hq = AvengersHeadQuarter.new
+        hq.put('Spiderman')
+        hq.put('Thor')
+        hq.put('Ironman')
+        hq.put('Hulk')
 
-  it 'deve adicionar uma lista de vingadores' do
-    hq = AvengersHeadQuarter.new
-    hq.put('Thor')
-    hq.put('Cap')
-    hq.put('Spider')
+        res = hq.avengers.size > 0
+        
+        expect(hq.avengers).to include 'Ironman'
+        expect(res).to be true
+    end
 
-    res = !hq.list.empty?
+    it 'Thor deve ser o primeiro da lista' do
+        
+        hq = AvengersHeadQuarter.new
+      
+        hq.put('Thor')
+        hq.put('Spiderman')
+        hq.put('Ironman')
+        hq.put('Hulk')
 
-    expect(res).to be true
-  end
+        expect(hq.avengers).to start_with('Thor')
 
-  it 'Thor deve ser o primeiro da lista' do
-    hq = AvengersHeadQuarter.new
+    end
 
-    hq.put('Thor')
-    hq.put('Hulk')
-    hq.put('Spiderman')
+    it 'Ironman deve ser o ultimo da lista' do
+        
+        hq = AvengersHeadQuarter.new
 
-    expect(hq.list).to start_with('Thor')
-  end
+        hq.put('Thor')
+        hq.put('Spiderman')
+        hq.put('Hulk')
+        hq.put('Ironman')
+        # hq.put('Black Widow')
 
-  it 'Ironman deve ser o ultimo da lista' do
-    hq = AvengersHeadQuarter.new
+        expect(hq.avengers).to end_with('Ironman')
+    end
 
-    hq.put('Thor')
-    hq.put('Cap')
-    hq.put('Pantera')
-    hq.put('Ironman')
+#     it 'deve conter o sobrenome' do
+#         avenger. = 'Peter Parker'
 
-    expect(hq.list).to end_with('Ironman')
-  end
+#         expect(avenger).to match(/Paker/)
 
-  it 'deve conter o sobrenome' do
-    avenger = 'Peter Parker'
-
-    expect(avenger).to match(/Parker/)
-  end
-end
+#     end
+# end
