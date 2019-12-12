@@ -1,70 +1,63 @@
 
 class AvengersHeadQuarter
-
-    attr_accessor :avengers
+    attr_accessor :list
 
     def initialize
-        self.avengers = []
+        self.list = []
     end
 
     def put(avenger)
-        self.avengers.push(avenger)
+        self.list.push(avenger)
     end
 end
 
-
-# TDD (Desenvolvimento Guiado por Testes)
+# TDD (Desenvolvimento guiado por testes)
 describe AvengersHeadQuarter do
     it 'deve adicionar um vingador' do
         hq = AvengersHeadQuarter.new
 
         hq.put('Spiderman')
-        expect(hq.avengers).to include 'Spiderman'
+        expect(hq.list).to include 'Spiderman'
     end
 
-    it 'deve adicionar uma lista de avengers' do
+    it 'deve adicionar uma lista de vingadores' do
         hq = AvengersHeadQuarter.new
-        hq.put('Spiderman')
         hq.put('Thor')
-        hq.put('Ironman')
         hq.put('Hulk')
+        hq.put('Spiderman')
 
-        res = hq.avengers.size > 0
-        
-        expect(hq.avengers).to include 'Ironman'
+        res = hq.list.size > 0
+
+        expect(hq.list.size).to be > 0
         expect(res).to be true
     end
 
-    it 'Thor deve ser o primeiro da lista' do
-        
+    it 'thor deve ser o primeiro da lista' do
         hq = AvengersHeadQuarter.new
-      
+
         hq.put('Thor')
-        hq.put('Spiderman')
-        hq.put('Ironman')
         hq.put('Hulk')
+        hq.put('Spiderman')
 
-        expect(hq.avengers).to start_with('Thor')
-
+        expect(hq.list).to start_with('Thor')
     end
 
-    it 'Ironman deve ser o ultimo da lista' do
-        
+    it 'Ironman deve ser o último da lista' do
         hq = AvengersHeadQuarter.new
 
         hq.put('Thor')
-        hq.put('Spiderman')
         hq.put('Hulk')
+        hq.put('Spiderman')
         hq.put('Ironman')
-        # hq.put('Black Widow')
 
-        expect(hq.avengers).to end_with('Ironman')
+        expect(hq.list).to end_with('Ironman')
     end
 
     it 'deve conter o sobrenome' do
-        avenger. = 'Peter Parker'
+        avenger = 'Peter Parker'
 
-        expect(avenger).to match(/Paker/)
-
+        expect(avenger).to match(/Parker/)
+        expect(avenger).not_to match(/Papito/)
     end
+
 end
